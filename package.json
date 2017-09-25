@@ -5,7 +5,8 @@
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server",
-    "build": "webpack"
+    "build": "webpack",
+    "deploy": "npm run build && mkdir -p ./docs/$PAGE && cp -r ./public/* ./docs/$PAGE/"
   },
   "author": "Dmitry.Scheglov@gmail.com",
   "license": "MIT",
@@ -19,7 +20,8 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.1"
+    "reselect": "^3.0.1",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {},
   "repository": {
