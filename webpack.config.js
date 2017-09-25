@@ -1,48 +1,28 @@
 const path = require('path');
-const webpack = require('webpack');
-
-const DEV_ENV = 'development';
-const NODE_ENV = process.env.NODE_ENV || DEV_ENV;
 
 module.exports = {
   entry: './build',
 
   output: {
-    path: path.join(__dirname, './build/js'),
-    publicPath: 'js/',
+    path: path.join(__dirname, './public'),
+    publicPath: '/',
     filename: 'selectors-app.js'
   },
 
-  watch: true,
+  watch: false,
   devtool: 'source-map',
-
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
-      NODE_ENV: JSON.stringify(NODE_ENV),
-      DEV_ENV: JSON.stringify(DEV_ENV)
-    }),
-  ],
-
   module: {
     loaders: [
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
       {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        options: {
-          babelrc: true,
-        }
       }
     ]
   },
 
   devServer: {
-    contentBase: './build',
+    contentBase: './public',
     host: '0.0.0.0'
   }
 };
