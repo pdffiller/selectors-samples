@@ -43,7 +43,7 @@ export class _SelectorsApp extends React.Component {
       <MuiThemeProvider>
         <div>
           <AppBar
-            title="Selectors -- Sample 1"
+            title="Selectors -- Sample 2"
             iconElementRight={buttons(handleLoadClick, handleSaveClick)}
           />
           <UserList />
