@@ -5,7 +5,8 @@
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server",
-    "build": "webpack"
+    "build": "webpack",
+    "deploy": "npm run build && mkdir -p ./docs/js/$PAGE && cp ./build/js/* ./docs/js/$PAGE/"
   },
   "author": "Dmitry.Scheglov@gmail.com",
   "license": "MIT",

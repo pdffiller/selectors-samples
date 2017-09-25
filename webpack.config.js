@@ -13,7 +13,7 @@ module.exports = {
     filename: 'selectors-app.js'
   },
 
-  watch: true,
+  watch: false,
   devtool: 'source-map',
 
   plugins: [
