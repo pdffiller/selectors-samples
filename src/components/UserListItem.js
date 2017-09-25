@@ -1,9 +1,12 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { ListItem } from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
 
-import { userAvatar } from './user-avatar';
 
+export const userAvatar = (src = 'images/default-avatar.png') => (
+  <Avatar src={src} backgroundColor="white" />
+);
 
 const propTypes = {
   name: PropTypes.string,
