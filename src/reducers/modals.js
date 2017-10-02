@@ -13,4 +13,6 @@ const modals = (state = {}, action) => {
   }
 };
 
+export const isDialogOpen = (state, props) => !!state.modals[props.id];
+
 export default modals;

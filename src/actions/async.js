@@ -1,10 +1,11 @@
 import * as actions from './sync';
 import * as api from '../api';
+import { Pages, Users } from '../reducers';
 
 
 export const saveUsers = () => async (dispatch, getState) => {
   dispatch(actions.startLoading());
-  const users = getState().users;
+  const users = Users.getUsers(getState());
   const isSucceeded = await api.saveAllUsers(users);
   dispatch(actions.endLoading());
   dispatch(
@@ -18,7 +19,7 @@ const addUser = dispatch => user => dispatch(
 
 export const loadUsers = () => async (dispatch, getState) => {
   dispatch(actions.startLoading());
-  const page = getState().pages + 1;
+  const page = Pages.getLoadedPages(getState()) + 1;
   const users = await api.loadAllUsers(page);
   users.forEach(addUser(dispatch));
   dispatch(actions.endLoading());

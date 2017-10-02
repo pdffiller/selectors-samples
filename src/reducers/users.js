@@ -10,4 +10,8 @@ const users = (state = [], action) => {
   }
 };
 
+export const getUserIds = state => state.users.map(u => u.id);
+export const getUsers = state => state.users;
+export const getUsersCount = state => getUsers(state).length;
+
 export default users;

@@ -13,4 +13,6 @@ const loading = (state = false, action) => {
   }
 };
 
+export const isLoading = state => state.loading;
+
 export default loading;

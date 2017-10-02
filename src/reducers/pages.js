@@ -10,4 +10,5 @@ const pages = (state = 0, action) => {
   }
 };
 
+export const getLoadedPages = state => state.pages;
 export default pages;
