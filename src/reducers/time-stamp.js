@@ -1,4 +1,4 @@
-export const timeStamp = (state = Date.now(), action) => {
+export default (state = Date.now(), action) => {
   switch (action.type) {
     case 'SNAP_TIMESTAMP':
       return action.payload;
@@ -6,3 +6,4 @@ export const timeStamp = (state = Date.now(), action) => {
       return state;
   }
 };
+

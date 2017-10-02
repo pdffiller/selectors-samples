@@ -8,6 +8,7 @@ import Divider from 'material-ui/Divider';
 import actions from '../actions';
 import { UserListItem } from './UserListItem';
 import { buttons } from './buttons';
+import { Users } from '../reducers';
 
 const propTypes = {
   title: PropTypes.string,
@@ -42,7 +43,7 @@ export const _UserList = ({ title, users, onBtnLoadClick, onBtnSaveClick }) => {
 _UserList.propTypes = propTypes;
 
 const state2Props = state => ({
-  users: state.users,
+  users: Users.getUsers(state),
 });
 
 const dispatch2Props = {
