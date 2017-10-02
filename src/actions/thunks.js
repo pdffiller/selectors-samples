@@ -1,9 +1,11 @@
 import actions from './registry';
 import * as api from '../api';
 
+import { Users } from '../reducers';
+
 export const saveUsers = () => async (dispatch, getState) => {
   dispatch(actions.startLoading());
-  const users = getState().users.map(user => user.id);
+  const users = Users.getUserIds(getState());
   const isSucceeded = await api.saveAllUsers(users);
   dispatch(actions.endLoading());
   dispatch(
