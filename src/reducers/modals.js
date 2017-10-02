@@ -1,6 +1,6 @@
 import { OPEN_MODAL, CLOSE_MODAL } from '../actions/types';
 
-export const modals = (state = {}, action) => {
+const modals = (state = {}, action) => {
   switch (action.type) {
     case OPEN_MODAL:
       return { ...state, [action.payload]: true };
@@ -12,3 +12,7 @@ export const modals = (state = {}, action) => {
       return state;
   }
 };
+
+export const isDialogOpen = (state, props) => !!state.modals[props.id];
+
+export default modals;

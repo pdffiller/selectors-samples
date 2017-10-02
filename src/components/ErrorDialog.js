@@ -5,6 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 
 import actions from '../actions';
+import { Modals, Users } from '../reducers';
 
 const actionButtons = onClick => [
   <FlatButton primary label="Close" onClick={onClick} />,
@@ -28,8 +29,8 @@ _ErrorDialog.propTypes = {
 };
 
 const stateToProps = state => ({
-  count: state.users.length,
-  isOpen: state.modals.error || false,
+  count: Users.getUsersCount(state),
+  isOpen: Modals.isDialogOpen(state, { id: 'error' }),
 });
 
 const dispatchToProps = {

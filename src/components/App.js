@@ -11,10 +11,10 @@ import { UserList } from './UserList';
 import { Loader } from './Loader';
 import { SuccessDialog } from './SuccessDialog';
 import { ErrorDialog } from './ErrorDialog';
-
+import { Loading } from '../reducers';
 
 const stateToProps = state => ({
-  isLoading: state.loading,
+  isLoading: Loading.isLoading(state),
 });
 
 const dispatchToProps = {
@@ -33,7 +33,6 @@ export class SelectorsApp extends React.Component {
   }
 
   render() {
-    const { isLoading } = this.props;
     return (
       <MuiThemeProvider>
         <div style={{ padding: 0 }}>
@@ -45,7 +44,7 @@ export class SelectorsApp extends React.Component {
           </Paper>
           <SuccessDialog />
           <ErrorDialog />
-          {isLoading && <Loader />}
+          {this.props.isLoading && <Loader />}
         </div>
       </MuiThemeProvider>
     );
