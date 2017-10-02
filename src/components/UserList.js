@@ -38,7 +38,7 @@ export const _UserList = ({ title, users, onBtnLoadClick, onBtnSaveClick }) => {
       { users.map(UserListItem) }
     </List>
   );
-}
+};
 _UserList.propTypes = propTypes;
 
 const state2Props = state => ({
