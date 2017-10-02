@@ -5,8 +5,7 @@ const MAX_DELAY = 1500;
 const rndDelay = delay => Math.round(delay * Math.random());
 
 const delayedResolve = (f, delay = MAX_DELAY) => resolve => setTimeout(
-  () => resolve(f()),
-  rndDelay(delay)
+  () => resolve(f()), rndDelay(delay)
 );
 
 export const loadAllUsers = () => new Promise(
