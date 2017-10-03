@@ -43,9 +43,18 @@ const allIds = (state = [], action) => {
 
 const users = combineReducers({ byId, allIds });
 
+
+// Selectors: ------------------------------------------------------------------
+
+const entityById = entities => id => entities[id];
+const mapUserIds = (ids, entities) => ids.map(entityById(entities));
+
 export const getUserIds = state => state.users.allIds;
-export const userById = state => id => state.users.byId[id] || initialState;
-export const getUsers = state => getUserIds(state).map(userById(state));
-export const getUsersCount = state => getUsers(state).length;
+export const getUserEntities = state => state.users.byId;
+
+export const getUsers = state => mapUserIds(
+  getUserIds(state), getUserEntities(state)
+);
+export const getUsersCount = state => getUserIds(state).length;
 
 export default users;
