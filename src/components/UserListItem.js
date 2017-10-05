@@ -4,27 +4,13 @@ import { ListItem } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import { grey400 } from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-import Divider from 'material-ui/Divider';
+import CloseIcon from 'material-ui/svg-icons/navigation/close';
 
-const iconButtonElement = (
-  <IconButton
-    touch
-    tooltip="Edit"
-    tooltipPosition="bottom-left"
-  >
-    <MoreVertIcon color={grey400} />
+
+const removeIconButton = onClick => (
+  <IconButton touch tooltipPosition="bottom-left" onClick={onClick}>
+    <CloseIcon color={grey400} />
   </IconButton>
-);
-
-const rightIconMenu = (onEditClick, onRemoveClick) => (
-  <IconMenu iconButtonElement={iconButtonElement}>
-    <MenuItem onClick={onEditClick}>Edit</MenuItem>
-    <Divider />
-    <MenuItem onClick={onRemoveClick}>Remove</MenuItem>
-  </IconMenu>
 );
 
 const userAvatar = (src = 'images/default-avatar.png') => (
@@ -45,10 +31,8 @@ export const UserListItem = ({ id, name, email, avaUrl, ...handlers }, index) =>
     primaryText={name}
     secondaryText={email}
     leftAvatar={userAvatar(avaUrl)}
-    rightIconButton={rightIconMenu(
-      handlers.onEditClick(id),
-      handlers.onRemoveClick(index),
-    )}
+    onClick={handlers.onEditClick(id)}
+    rightIconButton={removeIconButton(handlers.onRemoveClick(index))}
   />
 );
 UserListItem.propTypes = propTypes;

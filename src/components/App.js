@@ -38,7 +38,7 @@ export class SelectorsApp extends React.Component {
       <MuiThemeProvider>
         <div style={{ padding: 0 }}>
           <AppBar
-            title="Selectors -- Sample 2"
+            title="Selectors -- Sample 3"
           />
           <Paper zDepth={3}>
             <UserList title="Users" />
