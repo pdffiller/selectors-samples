@@ -13,15 +13,15 @@ export const saveUsers = () => async (dispatch, getState) => {
   );
 };
 
-const addUser = dispatch => user => dispatch(
-  actions.addUser(user)
+const toLookup = users => users.reduce(
+  (entities, entity) => Object.assign(entities, { [entity.id]: entity }), {}
 );
 
 export const loadUsers = () => async (dispatch, getState) => {
   dispatch(actions.startLoading());
   const page = Pages.getLoadedPages(getState()) + 1;
   const users = await api.loadAllUsers(page);
-  users.forEach(addUser(dispatch));
+  dispatch(actions.addUsers(toLookup(users)));
   dispatch(actions.endLoading());
 };
 

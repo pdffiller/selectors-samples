@@ -24,7 +24,7 @@ const _SuccessDialog = ({ ids, isOpen, handleCloseClick }) => (
   </Dialog>
 );
 _SuccessDialog.propTypes = {
-  ids: PropTypes.arrayOf(PropTypes.number),
+  ids: PropTypes.arrayOf(PropTypes.string),
   isOpen: PropTypes.bool,
   handleCloseClick: PropTypes.func,
 };

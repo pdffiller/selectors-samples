@@ -5,8 +5,16 @@ export const addUser = user => ({
   type: Types.ADD_USER, payload: user
 });
 
+export const addUsers = users => ({
+  type: Types.ADD_USERS, payload: users
+});
+
 export const updateUser = user => ({
   type: Types.UPDATE_USER, payload: user
+});
+
+export const removeUser = index => ({
+  type: Types.REMOVE_USER, payload: index
 });
 
 export const startLoading = () => ({

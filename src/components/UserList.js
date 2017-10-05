@@ -12,8 +12,8 @@ import { Users } from '../reducers';
 
 const wrap = handler => id => () => handler(id);
 
-const userListItem = onEditClick => (user, index) => (
-  UserListItem({ ...user, onEditClick }, index)
+const userListItem = (onEditClick, onRemoveClick) => (user, index) => (
+  UserListItem({ ...user, onEditClick, onRemoveClick }, index)
 );
 
 const propTypes = {
@@ -42,7 +42,9 @@ export const _UserList = ({ title, users, ...handlers }) => {
         </ToolbarGroup>
       </Toolbar>
       <Divider />
-      { users.map(userListItem(wrap(handlers.onBtnEditClick))) }
+      {users.map(
+        userListItem(wrap(handlers.onBtnEditClick), wrap(handlers.onBtnRemoveClick))
+      )}
       <Divider />
       <ButtonLoad onClick={handlers.onBtnLoadClick} />
     </List>
@@ -58,6 +60,7 @@ const dispatch2Props = {
   onBtnLoadClick: actions.loadUsers,
   onBtnSaveClick: actions.saveUsers,
   onBtnEditClick: actions.startEdit,
+  onBtnRemoveClick: actions.removeUser,
 };
 
 export const UserList = connect(state2Props, dispatch2Props)(_UserList);

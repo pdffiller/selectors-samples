@@ -12,9 +12,10 @@ import { Editing } from '../reducers';
 const styles = {
   ava: {
     float: 'left',
+    width: 200,
   },
   fields: {
-    float: 'right',
+    float: 'left',
     width: 350,
   },
   img: {
