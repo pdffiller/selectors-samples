@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { ADD_USER, ADD_USERS, UPDATE_USER, REMOVE_USER } from '../actions/types';
-import { mapIds, memorize2, combineSelectors } from '../utils/selectors';
+import { mapIds, combineSelectors } from '../utils/selectors';
 
 const initialState = {
   id: null,
@@ -61,7 +61,7 @@ export const getUserIds = state => state.users.allIds;
 export const getUserEntities = state => state.users.byId;
 
 export const getUsers = combineSelectors(
-  [getUserIds, getUserEntities], memorize2(mapIds)
+  [getUserIds, getUserEntities], mapIds
 );
 export const getUsersCount = state => getUserIds(state).length;
 
