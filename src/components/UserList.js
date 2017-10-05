@@ -10,6 +10,12 @@ import { UserListItem } from './UserListItem';
 import { ButtonSave, ButtonLoad } from './buttons';
 import { Users } from '../reducers';
 
+const wrap = handler => id => () => handler(id);
+
+const userListItem = onEditClick => (user, index) => (
+  UserListItem({ ...user, onEditClick }, index)
+);
+
 const propTypes = {
   title: PropTypes.string,
   users: PropTypes.arrayOf(PropTypes.object),
@@ -19,7 +25,7 @@ const propTypes = {
 
 let renderCount = 0;
 
-export const _UserList = ({ title, users, onBtnLoadClick, onBtnSaveClick }) => {
+export const _UserList = ({ title, users, ...handlers }) => {
   console.log(
     `%c Rendering User List (${++renderCount})`,
     'background: red; color: white'
@@ -32,13 +38,13 @@ export const _UserList = ({ title, users, onBtnLoadClick, onBtnSaveClick }) => {
         </ToolbarGroup>
         <ToolbarGroup>
           <ToolbarSeparator />
-          <ButtonSave onClick={onBtnSaveClick} />
+          <ButtonSave onClick={handlers.onBtnSaveClick} />
         </ToolbarGroup>
       </Toolbar>
       <Divider />
-      { users.map(UserListItem) }
+      { users.map(userListItem(wrap(handlers.onBtnEditClick))) }
       <Divider />
-      <ButtonLoad onClick={onBtnLoadClick} />
+      <ButtonLoad onClick={handlers.onBtnLoadClick} />
     </List>
   );
 };
@@ -51,6 +57,7 @@ const state2Props = state => ({
 const dispatch2Props = {
   onBtnLoadClick: actions.loadUsers,
   onBtnSaveClick: actions.saveUsers,
+  onBtnEditClick: actions.startEdit,
 };
 
 export const UserList = connect(state2Props, dispatch2Props)(_UserList);

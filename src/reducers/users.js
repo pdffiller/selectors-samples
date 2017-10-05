@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { ADD_USER } from '../actions/types';
+import { ADD_USER, UPDATE_USER } from '../actions/types';
 
 const initialState = {
   id: null,
@@ -11,6 +11,7 @@ const initialState = {
 const user = (state = initialState, action) => {
   switch (action.type) {
     case ADD_USER:
+    case UPDATE_USER:
       return { ...state, ...action.payload };
 
     default:
@@ -21,6 +22,7 @@ const user = (state = initialState, action) => {
 const byId = (state = {}, action) => {
   switch (action.type) {
     case ADD_USER:
+    case UPDATE_USER:
       const { id } = action.payload;
       return { ...state, [id]: user(state[id], action) };
 

@@ -1,6 +1,6 @@
 import * as actions from './sync';
 import * as api from '../api';
-import { Pages, Users } from '../reducers';
+import { Pages, Users, Editing } from '../reducers';
 
 
 export const saveUsers = () => async (dispatch, getState) => {
@@ -23,4 +23,18 @@ export const loadUsers = () => async (dispatch, getState) => {
   const users = await api.loadAllUsers(page);
   users.forEach(addUser(dispatch));
   dispatch(actions.endLoading());
+};
+
+export const startEdit = id => (dispatch, getState) => {
+  const state = getState();
+  const user = Users.getUserEntities(state)[id];
+  if (!user) return;
+  dispatch(actions.satrtEditUser(user));
+};
+
+export const commitEdit = () => (dispatch, getState) => {
+  const state = getState();
+  const editedUser = Editing.getEditingUser(state);
+  if (!editedUser) return;
+  dispatch(actions.updateUser(editedUser));
 };

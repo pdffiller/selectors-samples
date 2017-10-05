@@ -11,6 +11,7 @@ import { UserList } from './UserList';
 import { Loader } from './Loader';
 import { SuccessDialog } from './SuccessDialog';
 import { ErrorDialog } from './ErrorDialog';
+import { EditDialog } from './EditDialog';
 import { Loading } from '../reducers';
 
 const stateToProps = state => ({
@@ -37,13 +38,14 @@ export class SelectorsApp extends React.Component {
       <MuiThemeProvider>
         <div style={{ padding: 0 }}>
           <AppBar
-            title="Selectors -- Sample 1"
+            title="Selectors -- Sample 2"
           />
           <Paper zDepth={3}>
             <UserList title="Users" />
           </Paper>
           <SuccessDialog />
           <ErrorDialog />
+          <EditDialog />
           {this.props.isLoading && <Loader />}
         </div>
       </MuiThemeProvider>
