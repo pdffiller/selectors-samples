@@ -1,4 +1,5 @@
 import { START_EDIT_USER, EDIT_USER } from '../actions/types';
+import { branchSelector } from '../utils/selectors';
 
 const editing = (state = null, action) => {
   switch (action.type) {
@@ -13,6 +14,6 @@ const editing = (state = null, action) => {
   }
 };
 
-
-export const getEditingUser = state => state.editing;
+export const branch = branchSelector(state => state.editing);
+export const getEditingUser = branch;
 export default editing;

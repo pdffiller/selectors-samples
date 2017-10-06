@@ -2,6 +2,7 @@ export const entityById = entities => id => entities[id];
 export const mapIds = (ids, entities) => ids.map(entityById(entities));
 
 export const DONT_MEMORIZE = null;
+export const idx = x => x;
 
 export const memorize2 = func => {
   let cachedA;
@@ -40,4 +41,17 @@ export const memorize = (func, compare = shalowCompareArgs) => {
 export const combineSelectors = (entrySelectors, selector, memorizer = memorize) => {
   if (typeof memorizer === 'function') selector = memorizer(selector);
   return (...args) => selector(...entrySelectors.map(apply(args)));
+};
+
+export const branchSelector = selector => {
+  let _selector = selector || idx;
+  return Object.assign(
+    (...args) => _selector(...args),
+    {
+      assign(newSelector) { _selector = newSelector; },
+      attachTo(parent) {
+        _selector = combineSelectors([parent], _selector, DONT_MEMORIZE);
+      }
+    }
+  );
 };

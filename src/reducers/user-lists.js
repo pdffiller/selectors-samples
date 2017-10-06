@@ -1,5 +1,5 @@
 import { ADD_USER, ADD_USERS, REMOVE_USER } from '../actions/types';
-import { combineSelectors } from '../utils/selectors';
+import { combineSelectors, branchSelector } from '../utils/selectors';
 
 
 const initialState = [];
@@ -33,7 +33,7 @@ export const lists = (state = {}, action) => {
   }
 };
 
-export const branch = state => state.users;
+export const branch = branchSelector();
 
 const getListId = (state, props) => props.listId;
 

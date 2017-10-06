@@ -1,4 +1,5 @@
 import { START_LOADING, END_LOADING } from '../actions/types';
+import { branchSelector } from '../utils/selectors';
 
 const loading = (state = false, action) => {
   switch (action.type) {
@@ -13,6 +14,8 @@ const loading = (state = false, action) => {
   }
 };
 
-export const isLoading = state => state.loading;
+export const branch = branchSelector(state => state.loading);
+
+export const isLoading = branch;
 
 export default loading;

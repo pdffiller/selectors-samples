@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { ADD_USER, ADD_USERS, UPDATE_USER } from '../actions/types';
-import { mapIds, combineSelectors, DONT_MEMORIZE } from '../utils/selectors';
+import { mapIds, combineSelectors, branchSelector, DONT_MEMORIZE } from '../utils/selectors';
 import lists, * as Lists from './user-lists';
 
 const initialState = {
@@ -42,7 +42,8 @@ const users = combineReducers({ byId, lists });
 
 // Selectors: ------------------------------------------------------------------
 
-export const branch = state => state.users;
+export const branch = branchSelector(state => state.users);
+Lists.branch.assign(branch);
 
 export const getUserEntities = combineSelectors(
   [branch], state => state.byId, DONT_MEMORIZE

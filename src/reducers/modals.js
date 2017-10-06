@@ -1,5 +1,5 @@
 import { OPEN_MODAL, CLOSE_MODAL } from '../actions/types';
-import { combineSelectors, DONT_MEMORIZE } from '../utils/selectors';
+import { combineSelectors, branchSelector, DONT_MEMORIZE } from '../utils/selectors';
 import { getUserIdsList } from './user-lists';
 
 const modals = (state = {}, action) => {
@@ -15,7 +15,7 @@ const modals = (state = {}, action) => {
   }
 };
 
-export const branch = state => state.modals;
+export const branch = branchSelector(state => state.modals);
 
 const getModalByIdCreator = modalId => combineSelectors(
   [branch], state => state[modalId], DONT_MEMORIZE

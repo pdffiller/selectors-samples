@@ -1,5 +1,5 @@
 import { END_LOADING } from '../actions/types';
-import { combineSelectors } from '../utils/selectors';
+import { combineSelectors, branchSelector } from '../utils/selectors';
 
 const inc = (state = 0) => state + 1;
 
@@ -14,7 +14,7 @@ const pages = (state = {}, { type, listId }) => {
   }
 };
 
-export const branch = state => state.pages;
+export const branch = branchSelector(state => state.pages);
 
 export const getLoadedPages = combineSelectors(
   [branch, (_, listId) => listId], (state, listId) => state[listId] || 0
