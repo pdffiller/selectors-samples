@@ -6,12 +6,12 @@
     "test": "jest",
     "start": "webpack-dev-server",
     "build": "webpack",
+    "test": "jest",
     "deploy": "npm run build && mkdir -p ./docs/$PAGE && cp -r ./public/* ./docs/$PAGE/"
   },
   "author": "Dmitry.Scheglov@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "jest": "^21.1.0",
     "material-ui": "^0.19.2",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
@@ -23,7 +23,9 @@
     "reselect": "^3.0.1",
     "uuid": "^3.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^21.1.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pdffiller/selectors-samples.git"
