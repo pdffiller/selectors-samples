@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import { ADD_USER, ADD_USERS, UPDATE_USER, REMOVE_USER } from '../actions/types';
-import { mapIds, combineSelectors } from '../utils/selectors';
+import { ADD_USER, ADD_USERS, UPDATE_USER } from '../actions/types';
+import { mapIds, combineSelectors, DONT_MEMORIZE } from '../utils/selectors';
+import lists, * as Lists from './user-lists';
 
 const initialState = {
   id: null,
@@ -35,34 +36,28 @@ const byId = (state = {}, action) => {
   }
 };
 
-const allIds = (state = [], action) => {
-  switch (action.type) {
-    case ADD_USER:
-      return [...state, action.payload.id];
 
-    case ADD_USERS:
-      return state.concat(Object.keys(action.payload));
-
-    case REMOVE_USER:
-      const index = action.payload;
-      return [...state.slice(0, index), ...state.slice(index + 1)];
-
-    default:
-      return state;
-  }
-};
-
-const users = combineReducers({ byId, allIds });
+const users = combineReducers({ byId, lists });
 
 
 // Selectors: ------------------------------------------------------------------
 
-export const getUserIds = state => state.users.allIds;
-export const getUserEntities = state => state.users.byId;
+export const branch = state => state.users;
+
+export const getUserEntities = combineSelectors(
+  [branch], state => state.byId, DONT_MEMORIZE
+);
+
+export const getUserById = combineSelectors(
+  [getUserEntities, (_, id) => id], (state, id) => state[id]
+);
 
 export const getUsers = combineSelectors(
-  [getUserIds, getUserEntities], mapIds
+  [Lists.getUserIdsList, getUserEntities], mapIds,
 );
-export const getUsersCount = state => getUserIds(state).length;
+
+export const getUsersCount = combineSelectors(
+  [Lists.getUserIdsList], list => list.length
+);
 
 export default users;

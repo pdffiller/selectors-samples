@@ -1,32 +1,32 @@
 import * as Types from './types';
 
 
-export const addUser = user => ({
-  type: Types.ADD_USER, payload: user
+export const addUser = (user, listId) => ({
+  type: Types.ADD_USER, payload: user, listId
 });
 
-export const addUsers = users => ({
-  type: Types.ADD_USERS, payload: users
+export const addUsers = (users, listId) => ({
+  type: Types.ADD_USERS, payload: users, listId
 });
 
-export const updateUser = user => ({
-  type: Types.UPDATE_USER, payload: user
+export const updateUser = (user, listId) => ({
+  type: Types.UPDATE_USER, payload: user, listId
 });
 
-export const removeUser = index => ({
-  type: Types.REMOVE_USER, payload: index
+export const removeUser = (index, listId) => ({
+  type: Types.REMOVE_USER, payload: index, listId
 });
 
-export const startLoading = () => ({
-  type: Types.START_LOADING
+export const startLoading = listId => ({
+  type: Types.START_LOADING, listId
 });
 
-export const endLoading = () => ({
-  type: Types.END_LOADING
+export const endLoading = listId => ({
+  type: Types.END_LOADING, listId
 });
 
-export const openModal = modalId => ({
-  type: Types.OPEN_MODAL, payload: modalId
+export const openModal = (modalId, listId) => ({
+  type: Types.OPEN_MODAL, payload: modalId, listId
 });
 
 export const closeModal = modalId => () => ({

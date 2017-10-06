@@ -1,4 +1,4 @@
-import { START_EDIT_USER, EDIT_USER, UPDATE_USER } from '../actions/types';
+import { START_EDIT_USER, EDIT_USER } from '../actions/types';
 
 const editing = (state = null, action) => {
   switch (action.type) {
@@ -7,9 +7,6 @@ const editing = (state = null, action) => {
 
     case EDIT_USER:
       return { ...state, ...action.payload };
-
-    case UPDATE_USER:
-      return null;
 
     default:
       return state;

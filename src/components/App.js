@@ -5,8 +5,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
 
-import actions from '../actions';
-
 import { UserList } from './UserList';
 import { Loader } from './Loader';
 import { SuccessDialog } from './SuccessDialog';
@@ -14,41 +12,30 @@ import { ErrorDialog } from './ErrorDialog';
 import { EditDialog } from './EditDialog';
 import { Loading } from '../reducers';
 
+const propTypes = {
+  isLoading: PropTypes.bool,
+};
+
+const _SelectorsApp = ({ isLoading }) => (
+  <MuiThemeProvider>
+    <div style={{ padding: 0 }}>
+      <AppBar
+        title="Selectors -- Sample 3"
+      />
+      <Paper zDepth={3}>
+        <UserList title="Users" listId="firstUserList" />
+      </Paper>
+      <SuccessDialog />
+      <ErrorDialog />
+      <EditDialog />
+      {isLoading && <Loader />}
+    </div>
+  </MuiThemeProvider>
+);
+_SelectorsApp.propTypes = propTypes;
+
 const stateToProps = state => ({
   isLoading: Loading.isLoading(state),
 });
 
-const dispatchToProps = {
-  loadUsers: actions.loadUsers,
-};
-
-@connect(stateToProps, dispatchToProps)
-export class SelectorsApp extends React.Component {
-  static propTypes = {
-    isLoading: PropTypes.bool,
-    loadUsers: PropTypes.func,
-  }
-
-  componentWillMount() {
-    this.props.loadUsers();
-  }
-
-  render() {
-    return (
-      <MuiThemeProvider>
-        <div style={{ padding: 0 }}>
-          <AppBar
-            title="Selectors -- Sample 3"
-          />
-          <Paper zDepth={3}>
-            <UserList title="Users" />
-          </Paper>
-          <SuccessDialog />
-          <ErrorDialog />
-          <EditDialog />
-          {this.props.isLoading && <Loader />}
-        </div>
-      </MuiThemeProvider>
-    );
-  }
-}
+export const SelectorsApp = connect(stateToProps)(_SelectorsApp);

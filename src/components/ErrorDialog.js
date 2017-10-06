@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 
 import actions from '../actions';
-import { Modals, Users } from '../reducers';
+import { Modals } from '../reducers';
 
 const actionButtons = onClick => [
   <FlatButton primary label="Close" onClick={onClick} />,
@@ -28,9 +28,11 @@ _ErrorDialog.propTypes = {
   handleCloseClick: PropTypes.func,
 };
 
+const propsWithId = { id: 'error' };
+
 const stateToProps = state => ({
-  count: Users.getUsersCount(state),
-  isOpen: Modals.isDialogOpen(state, { id: 'error' }),
+  count: Modals.getSaveFailureUsersCount(state, propsWithId),
+  isOpen: Modals.isDialogOpen(state, propsWithId),
 });
 
 const dispatchToProps = {

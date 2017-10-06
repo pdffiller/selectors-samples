@@ -1,6 +1,8 @@
 export const entityById = entities => id => entities[id];
 export const mapIds = (ids, entities) => ids.map(entityById(entities));
 
+export const DONT_MEMORIZE = null;
+
 export const memorize2 = func => {
   let cachedA;
   let cachedB;

@@ -3,13 +3,13 @@ import * as api from '../api';
 import { Pages, Users, Editing } from '../reducers';
 
 
-export const saveUsers = () => async (dispatch, getState) => {
+export const saveUsers = listId => async (dispatch, getState) => {
   dispatch(actions.startLoading());
-  const users = Users.getUsers(getState());
+  const users = Users.getUsers(getState(), { listId });
   const isSucceeded = await api.saveAllUsers(users);
   dispatch(actions.endLoading());
   dispatch(
-    actions.openModal(isSucceeded ? 'success' : 'error')
+    actions.openModal(isSucceeded ? 'success' : 'error', listId)
   );
 };
 
@@ -17,12 +17,12 @@ const toLookup = users => users.reduce(
   (entities, entity) => Object.assign(entities, { [entity.id]: entity }), {}
 );
 
-export const loadUsers = () => async (dispatch, getState) => {
+export const loadUsers = listId => async (dispatch, getState) => {
   dispatch(actions.startLoading());
-  const page = Pages.getLoadedPages(getState()) + 1;
+  const page = Pages.getLoadedPages(getState(), listId) + 1;
   const users = await api.loadAllUsers(page);
-  dispatch(actions.addUsers(toLookup(users)));
-  dispatch(actions.endLoading());
+  dispatch(actions.addUsers(toLookup(users), listId));
+  dispatch(actions.endLoading(listId));
 };
 
 export const startEdit = id => (dispatch, getState) => {
@@ -36,5 +36,9 @@ export const commitEdit = () => (dispatch, getState) => {
   const state = getState();
   const editedUser = Editing.getEditingUser(state);
   if (!editedUser) return;
-  dispatch(actions.updateUser(editedUser));
+  const user = Users.getUserById(state, editedUser.id);
+  if (editedUser !== user) {
+    dispatch(actions.updateUser(editedUser));
+  }
+  dispatch(actions.stopEditUser());
 };

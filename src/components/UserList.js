@@ -10,13 +10,14 @@ import { UserListItem } from './UserListItem';
 import { ButtonSave, ButtonLoad } from './buttons';
 import { Users } from '../reducers';
 
-const wrap = handler => id => () => handler(id);
+const wrap = (handler, listId) => id => () => handler(id, listId);
 
 const userListItem = (onEditClick, onRemoveClick) => (user, index) => (
   UserListItem({ ...user, onEditClick, onRemoveClick }, index)
 );
 
 const propTypes = {
+  listId: PropTypes.string.isRequired,
   title: PropTypes.string,
   users: PropTypes.arrayOf(PropTypes.object),
   onBtnLoadClick: PropTypes.func,
@@ -25,7 +26,7 @@ const propTypes = {
 
 let renderCount = 0;
 
-export const _UserList = ({ title, users, ...handlers }) => {
+export const _UserList = ({ listId, title, users, ...handlers }) => {
   console.log(
     `%c Rendering User List (${++renderCount})`,
     'background: red; color: white'
@@ -38,22 +39,27 @@ export const _UserList = ({ title, users, ...handlers }) => {
         </ToolbarGroup>
         <ToolbarGroup>
           <ToolbarSeparator />
-          <ButtonSave onClick={handlers.onBtnSaveClick} />
+          <ButtonSave onClick={() => handlers.onBtnSaveClick(listId)} />
         </ToolbarGroup>
       </Toolbar>
       <Divider />
       {users.map(
-        userListItem(wrap(handlers.onBtnEditClick), wrap(handlers.onBtnRemoveClick))
+        userListItem(
+          wrap(handlers.onBtnEditClick, listId),
+          wrap(handlers.onBtnRemoveClick, listId))
       )}
       <Divider />
-      <ButtonLoad onClick={handlers.onBtnLoadClick} />
+      <ButtonLoad
+        count={users.length}
+        onClick={() => handlers.onBtnLoadClick(listId)}
+      />
     </List>
   );
 };
 _UserList.propTypes = propTypes;
 
-const state2Props = state => ({
-  users: Users.getUsers(state),
+const state2Props = (state, props) => ({
+  users: Users.getUsers(state, props),
 });
 
 const dispatch2Props = {

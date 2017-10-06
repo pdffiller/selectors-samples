@@ -11,11 +11,16 @@ ButtonSave.propTypes = {
   onClick: PropTypes.func,
 };
 
-export const ButtonLoad = ({ onClick }) => (
+const getLoadButtonText = count => (
+  count > 0 ? 'Load more ...' : 'Click here to load users'
+);
+
+export const ButtonLoad = ({ count, onClick }) => (
   <ListItem style={{ textAlign: 'center' }} onClick={onClick}>
-    Load more ...
+    { getLoadButtonText(count) }
   </ListItem>
 );
 ButtonLoad.propTypes = {
+  count: PropTypes.number,
   onClick: PropTypes.func,
 };
