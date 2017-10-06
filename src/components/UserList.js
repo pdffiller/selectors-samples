@@ -28,7 +28,7 @@ let renderCount = 0;
 
 export const _UserList = ({ listId, title, users, ...handlers }) => {
   console.log(
-    `%c Rendering User List (${++renderCount})`,
+    `%c Rendering User List (${listId}): ${++renderCount}`,
     'background: red; color: white'
   );
   return (

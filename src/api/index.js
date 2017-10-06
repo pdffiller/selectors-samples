@@ -11,6 +11,7 @@ const delayedResolve = (f, delay = MAX_DELAY) => resolve => setTimeout(
 
 const toUserInstance = (page, pageSize) => user => ({
   ...user,
+  name: `${user.name} (${page})`,
   id: user.id + (page - 1) * pageSize,
 });
 

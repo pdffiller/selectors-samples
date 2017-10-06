@@ -16,14 +16,25 @@ const propTypes = {
   isLoading: PropTypes.bool,
 };
 
+const styles = {
+  paper: {
+    float: 'left',
+    width: 'calc(50% - 20px)',
+    margin: 10,
+  },
+};
+
 const _SelectorsApp = ({ isLoading }) => (
   <MuiThemeProvider>
     <div style={{ padding: 0 }}>
       <AppBar
-        title="Selectors -- Sample 3"
+        title="Selectors -- Sample 4"
       />
-      <Paper zDepth={3}>
+      <Paper zDepth={3} style={styles.paper}>
         <UserList title="Users" listId="firstUserList" />
+      </Paper>
+      <Paper zDepth={3} style={styles.paper}>
+        <UserList title="Users" listId="secondUserList" />
       </Paper>
       <SuccessDialog />
       <ErrorDialog />
