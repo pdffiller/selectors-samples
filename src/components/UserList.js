@@ -58,9 +58,12 @@ export const _UserList = ({ listId, title, users, ...handlers }) => {
 };
 _UserList.propTypes = propTypes;
 
-const state2Props = (state, props) => ({
-  users: Users.getUsers(state, props),
-});
+const state2Props = () => {
+  const getUsers = Users.getUsersCreator();
+  return (state, props) => ({
+    users: getUsers(state, props),
+  });
+};
 
 const dispatch2Props = {
   onBtnLoadClick: actions.loadUsers,

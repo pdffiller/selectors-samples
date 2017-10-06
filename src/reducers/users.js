@@ -52,7 +52,7 @@ export const getUserById = combineSelectors(
   [getUserEntities, (_, id) => id], (state, id) => state[id]
 );
 
-export const getUsers = combineSelectors(
+export const getUsersCreator = () => combineSelectors(
   [Lists.getUserIdsList, getUserEntities], mapIds,
 );
 

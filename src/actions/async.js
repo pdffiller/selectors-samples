@@ -2,10 +2,11 @@ import * as actions from './sync';
 import * as api from '../api';
 import { Pages, Users, Editing } from '../reducers';
 
+const getUsers = Users.getUsersCreator();
 
 export const saveUsers = listId => async (dispatch, getState) => {
   dispatch(actions.startLoading());
-  const users = Users.getUsers(getState(), { listId });
+  const users = getUsers(getState(), { listId });
   const isSucceeded = await api.saveAllUsers(users);
   dispatch(actions.endLoading());
   dispatch(
