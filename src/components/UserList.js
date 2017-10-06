@@ -8,7 +8,7 @@ import Divider from 'material-ui/Divider';
 import actions from '../actions';
 import { UserListItem } from './UserListItem';
 import { ButtonSave, ButtonLoad } from './buttons';
-import { Users } from '../reducers';
+import { UserList as UserListSelectors } from '../reducers';
 
 const wrap = (handler, listId) => id => () => handler(id, listId);
 
@@ -59,7 +59,7 @@ export const _UserList = ({ listId, title, users, ...handlers }) => {
 _UserList.propTypes = propTypes;
 
 const state2Props = () => {
-  const getUsers = Users.getUsersCreator();
+  const getUsers = UserListSelectors.getUsersCreator();
   return (state, props) => ({
     users: getUsers(state, props),
   });

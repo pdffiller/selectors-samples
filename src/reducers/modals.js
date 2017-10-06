@@ -1,6 +1,5 @@
 import { OPEN_MODAL, CLOSE_MODAL } from '../actions/types';
 import { combineSelectors, DONT_MEMORIZE } from '../utils/selectors';
-import { getUserIdsList } from './user-lists';
 
 const modals = (state = {}, action) => {
   switch (action.type) {
@@ -25,7 +24,7 @@ export const getModalById = (state, { id }) => ( // eslint-disable-line no-retur
   getModalById[id] || (getModalById[id] = getModalByIdCreator(id))
 )(state);
 
-const getPropsWithListId = combineSelectors(
+export const getPropsWithListId = combineSelectors(
   [getModalById], state => ({ listId: state })
 );
 
@@ -33,12 +32,5 @@ export const isDialogOpen = combineSelectors(
   [getModalById], state => !!state
 );
 
-export const getSavedUserIds = combineSelectors(
-  [state => state, getPropsWithListId], getUserIdsList
-);
-
-export const getSaveFailureUsersCount = combineSelectors(
-  [getSavedUserIds], ids => ids.length
-);
 
 export default modals;

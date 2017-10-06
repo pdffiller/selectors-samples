@@ -7,7 +7,7 @@ import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 
 import actions from '../actions';
-import { Editing } from '../reducers';
+import { UserList } from '../reducers';
 
 const styles = {
   ava: {
@@ -62,7 +62,7 @@ _EditDialog.propTypes = {
 };
 
 const stateToProps = state => ({
-  user: Editing.getEditingUser(state),
+  user: UserList.getEditingUser(state),
 });
 
 const dispatchToProps = {

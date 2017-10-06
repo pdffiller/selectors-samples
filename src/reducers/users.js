@@ -60,4 +60,6 @@ export const getUsersCount = combineSelectors(
   [Lists.getUserIdsList], list => list.length
 );
 
+export const getUserIdsList = Lists.getUserIdsList;
+
 export default users;
