@@ -52,9 +52,15 @@ export const getUserById = combineSelectors(
   [getUserEntities, (_, id) => id], (state, id) => state[id]
 );
 
-export const getUsers = combineSelectors(
+export const getUsersCreator = () => combineSelectors(
   [Lists.getUserIdsList, getUserEntities], mapIds,
 );
+
+const storedGetUsers = ({ listId }) => ( // eslint-disable-line no-return-assign
+  storedGetUsers[listId] || (storedGetUsers[listId] = getUsersCreator())
+);
+
+export const getUsers = (state, props) => storedGetUsers(props)(state, props);
 
 export const getUsersCount = combineSelectors(
   [Lists.getUserIdsList], list => list.length
