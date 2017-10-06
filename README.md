@@ -20,7 +20,7 @@ npm start
 Then follow to the instruction printed to console.
 
 
-*For windows users*: `npm start` should be enriched with `--port` and `--public`
+**For windows users**: `npm start` should be enriched with `--port` and `--public`
 options:
 
 ```sh
@@ -29,8 +29,8 @@ npm start -- --port <PORT> --public <you.loc.al.ip>:<PORT>
 
 ## Public Deployed Samples:
 
-1. [Sample Application without selectors](https://pdffiller.github.io/selectors-samples/sample-1/) (branch: *sample-1*)
-2. [Application within buggy selectors](https://pdffiller.github.io/selectors-samples/sample-2/) (branch: *sample-2*)
-3. [Application with memorized selectors](https://pdffiller.github.io/selectors-samples/sample-3/) (branch: *sample-3*)
-4. [Application with two lists and unwanted rendering](https://pdffiller.github.io/selectors-samples/sample-4/) (branch: *sample-4-1*)
-4. [Two lists with dedicated selectors](https://pdffiller.github.io/selectors-samples/sample-5/) (branch: *sample-4-4*)
+1. [Sample Application without selectors](https://pdffiller.github.io/selectors-samples/sample-1/) (branch: **sample-1**)
+2. [Application within buggy selectors](https://pdffiller.github.io/selectors-samples/sample-2/) (branch: **sample-2**)
+3. [Application with memorized selectors](https://pdffiller.github.io/selectors-samples/sample-3/) (branch: **sample-3**)
+4. [Application with two lists and unwanted rendering](https://pdffiller.github.io/selectors-samples/sample-4/) (branch: **sample-4-1**)
+4. [Two lists with dedicated selectors](https://pdffiller.github.io/selectors-samples/sample-5/) (branch: **sample-4-4**)
