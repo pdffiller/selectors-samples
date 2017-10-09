@@ -1,5 +1,8 @@
 # Selectors Samples
 
+## Presentation describing the samples:
+[Selectors - reducing the coupling of React/Redux-applications](https://drive.google.com/file/d/0B92i5IyVE2KpMWhoQ3NsaTRyQnM/view?usp=sharing)
+
 ## Local deployment
 
 ```sh
