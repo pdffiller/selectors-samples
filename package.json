@@ -11,7 +11,7 @@
   "author": "Dmitry.Scheglov@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "material-ui": "^0.19.2",
+    "material-ui": "^0.20.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
