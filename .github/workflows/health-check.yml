@@ -1,0 +1,11 @@
+name: Run Health Check
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    uses: pdffiller/health_monitoring/.github/workflows/health-check.yml@main
+    secrets: inherit
